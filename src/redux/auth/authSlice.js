@@ -8,7 +8,6 @@ import {
 } from './opertionsActions';
 import {
   onFulfilledLogOut,
-  onFulfilledLoginWithGoogle,
   onFulfilledRefresh,
   onFulfilledRegisterLogin,
   onPending,

@@ -3,12 +3,7 @@ import { Content, MainContent } from './Templates.styled';
 import TemplatesList from '../../components/TemplatesList/TemplatesList';
 import { useDispatch, useSelector } from 'react-redux';
 
-import TransportationFilter from '../../components/TemplateFind/TemplateFind';
-import {
-  selectFavTemplates,
-  selectTemplates,
-  selectUser,
-} from 'redux/selectors';
+import { selectFavTemplates, selectTemplates } from 'redux/selectors';
 import { H2 } from 'pages/TemplateEditor/TemplateEditor.styled';
 import { fetchTemplates } from 'redux/templates/operationsTemplate';
 import TemplateFind from '../../components/TemplateFind/TemplateFind';
@@ -36,7 +31,7 @@ const Templates = () => {
     };
 
     getTemplates();
-  }, []);
+  }, [dispatch]);
   useEffect(() => {
     if (search) {
       const searchTemplates = allTemplates.filter(temp =>
@@ -44,7 +39,7 @@ const Templates = () => {
       );
       setAllTemplates(searchTemplates);
     } else setAllTemplates(templates);
-  }, [search]);
+  }, [search, allTemplates, templates]);
   useEffect(() => {
     if (favorite) {
       const favoriteTemplates = allTemplates.filter(temp =>
@@ -53,7 +48,7 @@ const Templates = () => {
 
       setAllTemplates(favoriteTemplates);
     } else setAllTemplates(templates);
-  }, [favorite]);
+  }, [favorite, allTemplates, favTemplates, templates]);
   return (
     <Content search={search + favorite}>
       <>
