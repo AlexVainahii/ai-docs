@@ -53,20 +53,24 @@ const TemplateList = ({ allTemplates, onButton }) => {
               >
                 <RiEdit2Line size={25} />
               </EditButton>
-              <FavButton
-                title="Додати до обраних"
-                col={favTemplates?.findIndex(temp => temp.uid === template.id)}
-                onClick={() => {
-                  favTemplates?.findIndex(temp => temp.uid === template.id)
-                    ? handleFavorite(template.id, true)
-                    : handleFavorite(
-                        favTemplates?.find(temp => temp.uid === template.id),
-                        false
-                      );
-                }}
-              >
-                <RiHeartAddLine size={20} />
-              </FavButton>
+              {template?.email !== user?.email && (
+                <FavButton
+                  title="Додати до обраних"
+                  col={favTemplates?.findIndex(
+                    temp => temp.uid === template.id
+                  )}
+                  onClick={() => {
+                    favTemplates?.findIndex(temp => temp.uid === template.id)
+                      ? handleFavorite(template.id, true)
+                      : handleFavorite(
+                          favTemplates?.find(temp => temp.uid === template.id),
+                          false
+                        );
+                  }}
+                >
+                  <RiHeartAddLine size={20} />
+                </FavButton>
+              )}
               {template?.email !== user?.email && (
                 <DeleteButton
                   title="Видалити шаблон"
